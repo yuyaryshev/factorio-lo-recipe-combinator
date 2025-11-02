@@ -72,21 +72,6 @@ rc.graphics_set = {
   }
 }
 
---rc.selection_box = table.deepcopy(data.raw["constant-combinator"]["constant-combinator"].selection_box)
---rc.collision_box = table.deepcopy(data.raw["constant-combinator"]["constant-combinator"].collision_box)
-
---if rc.sprites then
---  for direction, sprite in pairs(rc.sprites) do
---    if sprite.filename then
---      sprite.filename = "__lo-recipe-combinator__/recipe-combinator.png"
---    end
---    if sprite.hr_version and sprite.hr_version.filename then
---      sprite.hr_version.filename = "__lo-recipe-combinator__/recipe-combinator.png"
---    end
---  end
---end
-
-
 rc.crafting_categories = {"crafting"}
 rc.crafting_speed = 0.000001
 rc.energy_usage = "1W"
