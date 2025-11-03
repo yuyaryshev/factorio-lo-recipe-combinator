@@ -78,5 +78,63 @@ rc.energy_usage = "1W"
 rc.energy_source = {type = "electric", usage_priority = "secondary-input"}
 rc.module_specification = {module_slots = 0}
 rc.allowed_effects = {}
+rc.circuit_connector = {
+  {
+  points = {
+      shadow =
+      {
+        red = util.by_pixel(7, -6),
+        green = util.by_pixel(23, -6)
+      },
+      wire =
+      {
+        red = util.by_pixel(-8.5, -17.5),
+        green = util.by_pixel(7, -17.5)
+      }
+    }
+  },
+  {
+  points = {
+      shadow =
+      {
+        red = util.by_pixel(32, -5),
+        green = util.by_pixel(32, 8)
+      },
+      wire =
+      {
+        red = util.by_pixel(14.5, -16.5),
+        green = util.by_pixel(17.5, -3.5)
+      }
+    }
+  },
+  {
+  points = {
+      shadow =
+      {
+        red = util.by_pixel(25, 20),
+        green = util.by_pixel(9, 20)
+      },
+      wire =
+      {
+        red = util.by_pixel(9, 7.5),
+        green = util.by_pixel(-6.5, 7.5)
+      }
+    }
+  },
+  {
+  points = {
+      shadow =
+      {
+        red = util.by_pixel(1, 11),
+        green = util.by_pixel(1, -2)
+      },
+      wire =
+      {
+        red = util.by_pixel(-13.5, -0.5),
+        green = util.by_pixel(-16.5, -13.5)
+      }
+    }
+  }
+}
 
 data:extend({rc})
