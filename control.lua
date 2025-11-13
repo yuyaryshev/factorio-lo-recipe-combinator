@@ -76,32 +76,32 @@ end
 --  Register compatibility
 ----------------------------------------------------------------
 local function init_compat()
-    if script.active_mods["compaktcircuit"]
+    if not (script.active_mods["compaktcircuit"]
         and remote.interfaces["compaktcircuit"]
-        and remote.interfaces["compaktcircuit"]["add_combinator"]
-    then
+        and remote.interfaces["compaktcircuit"]["add_combinator"]) then
+        return
+    end
+
+    if not remote.interfaces[main_name] then
         remote.add_interface(main_name, {
             get_info = cc_get_info,
             create_entity = cc_create_entity,
             create_packed_entity = cc_create_packed_entity
         })
-
-        remote.call("compaktcircuit", "add_combinator", {
-            name = main_name,
-            packed_names = { packed_name },
-            interface_name = main_name
-        })
     end
+
+    remote.call("compaktcircuit", "add_combinator", {
+        name = main_name,
+        packed_names = { packed_name },
+        interface_name = main_name
+    })
 end
 
-script.on_init(function()
-    init_compat()
-end)
-
-script.on_load(function()
-    init_compat()
-end)
-
+----------------------------------------------------------------
+--  Script events
+----------------------------------------------------------------
+script.on_init(init_compat)
+script.on_load(init_compat)
 script.on_configuration_changed(function()
     init_compat()
 end)
