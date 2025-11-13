@@ -1,9 +1,9 @@
 {
   "name": "lo-recipe-combinator",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "title": "LordOdin's Recipe Combinator",
   "author": "LordOdin",
   "description": "LordOdin's Recipe Combinator is implemented as a simple 1×1 assembling machine — not a complex scripted entity. When wired and configured cleverly, it can function as a recipe combinator, but without any per-tick logic or scripting overhead. Example setup: connect both red and green wires to it, enable both “set recipe” and “read ingredients”, then use one wire to set the recipe signal and the other to read back the ingredient signals.This mod is data.lua only (no control.lua), adds just one entity, and has virtually zero performance impact compared to tick-based implementations.",
   "factorio_version": "2.0",
-  "dependencies": ["base >= 2.0"]
+  "dependencies": ["base >= 2.0","?compaktcircuit"]
 }
