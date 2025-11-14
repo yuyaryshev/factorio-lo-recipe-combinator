@@ -2,7 +2,7 @@
 Version: 1.2.0
 Date: 13. 11. 2025
   Feature:
-    - Added compartibility witk Compakt Combinator mod.
+    - Added support for Compakt Combinator mod, but need patch to Compakt Combinator to work with it.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 05. 11. 2025
