@@ -141,7 +141,6 @@ for _, def in pairs(combinators) do
   local base = make_base_combinator(suffix)
   base.crafting_categories = def.cats
 
-  ------------
     local packed = table.deepcopy(base)
     packed.name = base.name..'-packed'
 	
@@ -151,11 +150,15 @@ for _, def in pairs(combinators) do
 	  "not-selectable-in-game", "not-upgradable", "not-in-kill-statistics",
 	  "not-in-made-in"
 	}
+	packed.hidden = true
+	packed.hidden_in_factoriopedia = true	
+	
 	packed.draw_circuit_wires = false
 
 	-- Must be tiny but valid, otherwise pipe positions fail
 	packed.collision_box = {{-0.1, -0.1}, {0.1, 0.1}}
 	packed.selection_box = nil
+	packed.graphics_set = nil
 
 	packed.sprites = util.empty_sprite(1)
 	packed.collision_mask = {layers={}, not_colliding_with_itself = true}
@@ -188,11 +191,6 @@ for _, def in pairs(combinators) do
 --    packed.alert_icon_scale = 0
 --    packed.activity_led_sprites = { north = util.empty_sprite(1), south = util.empty_sprite(1), east = util.empty_sprite(1), west = util.empty_sprite(1)}
 
-
-    data:extend{packed}
-  ------------
-  
-
   local name = "lo-recipe-combinator" .. suffix
   
   local item = {
@@ -214,7 +212,7 @@ for _, def in pairs(combinators) do
     results = {{type="item", name=name, amount=1}},
   }
   
-  data:extend({base, item, recipe})
+  data:extend({base, item, recipe, packed})
   table.insert(data.raw.technology["circuit-network"].effects, { type = "unlock-recipe", recipe = name })
 end
  
