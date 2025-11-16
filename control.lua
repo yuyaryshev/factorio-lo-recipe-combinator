@@ -5,11 +5,18 @@ local function ccs_get_info(entity)
 	return {}
 end
 
+local function dbgPrint(s)
+	return
+--    for _, player in pairs(game.players) do
+--        player.print(s)
+--    end
+end
 
-local function ccs_handle_spawned(entity, info)
+local function ccs_handle_spawned(entityOrEvent, info)
+	local entity = entityOrEvent.valid and entityOrEvent or entityOrEvent.entity
     if not (entity and entity.valid) then return end
 	if entity.name ~= main_name and entity.name ~= packed_name then return end
-
+	
     local behavior = entity.get_or_create_control_behavior()	
 	behavior.circuit_set_recipe = true
 	behavior.circuit_read_contents = false
@@ -44,23 +51,20 @@ local function ccs_create_entity(info, surface, position, force)
 end
 
 local function ccs_init()
-	script.on_nth_tick(60, nil) -- unregister self from on_nth_tick
-    if remote.interfaces[main_name] then
-		return
-    end
-
     if not (script.active_mods["compaktcircuit"]
         and remote.interfaces["compaktcircuit"]
         and remote.interfaces["compaktcircuit"]["add_combinator"]) then
         return
     end
- 
-	remote.add_interface(main_name, {
-		get_info = ccs_get_info,
-		create_entity = ccs_create_entity,
-		create_packed_entity = ccs_create_packed_entity
-	})
-	
+
+    if not remote.interfaces[main_name] then
+		remote.add_interface(main_name, {
+			get_info = ccs_get_info,
+			create_entity = ccs_create_entity,
+			create_packed_entity = ccs_create_packed_entity
+		})
+    end
+
 	remote.call("compaktcircuit", "add_combinator", {
 		name = main_name,
 		packed_names = { packed_name },
@@ -68,16 +72,21 @@ local function ccs_init()
 	})
 end
 
+script.on_init(ccs_init)
+script.on_load(ccs_init)
+script.on_configuration_changed(ccs_init)
+
 script.on_event({
 	defines.events.on_init,
 	defines.events.on_load,
 	defines.events.on_configuration_changed
 }, ccs_init)
-script.on_nth_tick(60, ccs_init)
 
 
 script.on_event({
 	defines.events.on_built_entity,
 	defines.events.on_robot_built_entity,
-	defines.events.on_space_platform_built_entity
+	defines.events.on_space_platform_built_entity,
+	defines.events.script_raised_built,
+	defines.events.script_raised_revive,
 }, ccs_handle_spawned)

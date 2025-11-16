@@ -73,10 +73,28 @@ local function make_base_combinator(name_suffix)
   return base
 end
 
+
+---Returns only existing recipe categories.
+---@param list string[]  -- array of category names
+---@return string[]      -- filtered array
+local function filter_existing_categories(list)
+    local result = {}
+    local categories = data.raw["recipe-category"]
+
+    for _, name in pairs(list) do
+        if categories[name] then
+            result[#result + 1] = name
+        end
+    end
+
+    return result
+end
+
+
 ----------------------------------------
 -- Default crafting categories
 ----------------------------------------
-local default_categories = {
+local default_categories = filter_existing_categories({
   "basic-crafting",
   "crafting",
   "advanced-crafting",
@@ -90,7 +108,7 @@ local default_categories = {
   "electronics-or-assembling",
   "cryogenics-or-assembling",
   "crafting-with-fluid-or-metallurgy",
-}
+})
 
 ----------------------------------------
 -- Define combinator types
@@ -139,7 +157,7 @@ end
 for _, def in pairs(combinators) do
   local suffix = def.name
   local base = make_base_combinator(suffix)
-  base.crafting_categories = def.cats
+  base.crafting_categories = filter_existing_categories(def.cats)
 
     local packed = table.deepcopy(base)
     packed.name = base.name..'-packed'

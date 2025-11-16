@@ -1,11 +1,32 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.4
+Date: 2025-11-16
+  Bugfix:
+    - Fixed startup bug missing category 'electronics' when playing without Space Age
+	- Finally got compartibility with Compakt Circuits working!
+---------------------------------------------------------------------------------------------------
+Version: 1.2.3
+Date: 2025-11-14
+  Bugfix:
+    - Compartibility fix for Compact Combinators
+---------------------------------------------------------------------------------------------------
+Version: 1.2.2
+Date: 2025-11-14
+  Bugfix:
+    - Fixed bug: multiplayer can't join issue
+---------------------------------------------------------------------------------------------------
+Version: 1.2.1
+Date: 2025-11-14
+  Bugfix:
+    - Fixed bug: sometimes Recipe Combinator mod won't get set to "Set Recipe" automatically
+---------------------------------------------------------------------------------------------------
 Version: 1.2.0
-Date: 13. 11. 2025
+Date: 2025-11-13
   Feature:
     - Added support for Compakt Combinator mod, but need patch to Compakt Combinator to work with it.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
-Date: 05. 11. 2025
+Date: 2025-11-05
   Feature:
     - Added other crafting categories to recipe combinator.
 ---------------------------------------------------------------------------------------------------
