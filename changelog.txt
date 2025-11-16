@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.3.0
+Date: 2025-11-16
+  Feature:
+    - Added more combinator types for other machine types. Might have bugs as I have troubles testing all them deeply
+---------------------------------------------------------------------------------------------------
 Version: 1.2.4
 Date: 2025-11-16
   Bugfix:
